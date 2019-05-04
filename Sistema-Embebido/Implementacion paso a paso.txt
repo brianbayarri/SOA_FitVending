@@ -8,3 +8,5 @@ Paso a paso de implementacion de sensores y actuadores:
 7) Implementar fotoresistor LDR
 8) Implementar tira de luces led blancas
 9) Implementar modulo Bluetooth HC-05
+
+* Para detalles de funcionamiento ver el documento Entradas y salidas.pdf
