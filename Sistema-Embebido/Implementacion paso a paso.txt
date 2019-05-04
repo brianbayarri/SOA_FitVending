@@ -1,10 +1,10 @@
 Paso a paso de implementacion de sensores y actuadores:
-1) Implementar fotoresistor LDR
-2) Implementar tira de luces led blancas
-3) Implementar modulo Bluetooth HC-05
+1) Implementar luces led roja y verde
+2) Implementar buzzer
+3) Implementar motores DC-3V Modelo 130
 4) Implementar detector de obstaculos infrarrojo MH-FLYINGFISH
 5) Implementar sensor de temperatura LM35
-6) Implementar motores DC-3V Modelo 130
-7) Implementar display LCD 16*2 con modulo L2C
-8) Implementar buzzer
-9) Implementar luces led roja y verde
+6) Implementar display LCD 16*2 con modulo L2C
+7) Implementar fotoresistor LDR
+8) Implementar tira de luces led blancas
+9) Implementar modulo Bluetooth HC-05
