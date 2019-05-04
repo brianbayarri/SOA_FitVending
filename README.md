@@ -10,16 +10,17 @@ Integrantes:
 
 Materiales:
 * Arduino Uno
-* Módulo Bluetooth
-* Luces leds
-* Servo motor sg 90/ motor
+* Módulo Bluetooth HC-05
+* Luces leds roja y verde
+* Tira de luces leds blancas
+* Buzzer YHE12
+* Motor DC 3V - Modelo 130
 * Display LCD 16*2 con módulo l2C
-* Sensor Infrarrojo 
-* Sensor de movimiento
+* Sensor Infrarrojo MH-FlyingFish
 * Sensor de temperatura LM35
 * Protoboard de 830 puntos
 * Cables de protoboard macho-hembra y macho-macho
-* Fotoresistor
+* Fotoresistor LDR
 * Resistencias
 * Fuente de alimentación
 * Madera
