@@ -1,0 +1,24 @@
+## 
+# Version 1.0.0
+
+## Release date: 04/06/2019
+ 	
+### Descripción:
+Aplicacion desarrollada para el control de alimentacion y ejercicio de una persona para que la misma pueda pedir un producto de la maquina Vending.
+
+### Bugs:
+- Sin bugs reportados.
+
+### Added:
+- Pantalla de alimentacion
+- Pantalla de cronometro
+- Pantalla de logros
+- Pantalla de perfil
+- Pantalla de rutina
+- Pantalla principal
+- Calculo de calorias quemadas en la pantalla cronometro
+
+
+### Change:
+
+### Removed:

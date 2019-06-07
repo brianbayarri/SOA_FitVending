@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AlimentacionActivity">
+
+
+    <Switch
+        android:id="@+id/sw_desayuno"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginBottom="45dp"
+        android:text="Desayuno 6:00-11:30"
+        android:thumbTint="#9C9C9C"
+        android:trackTint="#9C9C9C"
+        />
+    <Switch
+        android:id="@+id/sw_almuerzo"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="45dp"
+        android:layout_marginLeft="250dp"
+        android:text="Almuerzo 12:00-14:00"
+        android:thumbTint="#9C9C9C"
+        android:trackTint="#9C9C9C"
+        />
+    <Switch
+        android:id="@+id/sw_cena"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="130dp"
+        android:layout_marginLeft="45dp"
+        android:text="Cena 20:00-24:00"
+        android:thumbTint="#9C9C9C"
+        android:trackTint="#9C9C9C"
+        />
+    <Switch
+        android:id="@+id/sw_colacion"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="130dp"
+        android:layout_marginLeft="250dp"
+        android:text="Colacion 00:00-24:00"
+        android:thumbTint="#9C9C9C"
+        android:trackTint="#9C9C9C"
+        />
+
+    <TextView
+        android:id="@+id/txt_plato_principal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plato principal"
+        android:layout_marginVertical="200dp"
+        android:layout_marginLeft="45dp"
+        android:background="#6DBE11"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/txt_porcion1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Porcion/Cant"
+        android:layout_marginVertical="200dp"
+        android:layout_marginLeft="250dp"
+        android:background="#6DBE11"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/txt_guarnicion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guarnicion"
+        android:layout_marginVertical="280dp"
+        android:layout_marginLeft="45dp"
+        android:background="#6DBE11"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/txt_porcion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Porcion/Cant"
+        android:layout_marginVertical="280dp"
+        android:layout_marginLeft="250dp"
+        android:background="#6DBE11"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/txt_bebida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="360dp"
+        android:layout_marginLeft="45dp"
+        android:text="Bebida"
+        android:background="#6DBE11"
+        android:textColor="#FFFFFF"
+        />
+
+
+    <TextView
+        android:id="@+id/txt_vasos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="360dp"
+        android:layout_marginLeft="250dp"
+        android:text="Vasos (1 = 200ml)"
+        android:background="#6DBE11"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/txt_calorias"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="450dp"
+        android:text="Calorias consumidas"
+        android:textSize="24sp"
+        android:background="#6DBE11"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/lbl_CaloriasNum_A"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:text="0.0/0.0"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="490dp"
+        android:gravity="center" />
+
+    <Spinner
+        android:id="@+id/sp_plato_principal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="230dp"
+        android:layout_marginLeft="45dp"
+        />
+
+    <Spinner
+        android:id="@+id/sp_porcion1"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="230dp"
+        android:layout_marginLeft="250dp"
+        />
+
+    <Spinner
+        android:id="@+id/sp_guarnicion"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="310dp"
+        android:layout_marginLeft="45dp"
+        />
+
+    <Spinner
+        android:id="@+id/sp_porcion2"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="310dp"
+        android:layout_marginLeft="250dp"
+        />
+
+    <Spinner
+        android:id="@+id/sp_bebida"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="390dp"
+        android:layout_marginLeft="45dp"
+        />
+
+    <Spinner
+        android:id="@+id/sp_vasos"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="390dp"
+        android:layout_marginLeft="250dp"
+        />
+
+    <Button
+        android:id="@+id/btn_guardar"
+        android:layout_width="155dp"
+        android:layout_height="37dp"
+        android:layout_marginVertical="540dp"
+        android:layout_marginLeft="40dp"
+        android:text="Guardar"
+        />
+
+    <Button
+        android:id="@+id/btn_cancelar"
+        android:layout_width="155dp"
+        android:layout_height="37dp"
+        android:layout_marginVertical="540dp"
+        android:layout_marginLeft="220dp"
+        android:text="Cancelar"
+        />
+
+
+
+</RelativeLayout>
