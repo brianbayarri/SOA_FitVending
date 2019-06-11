@@ -1,9 +1,11 @@
 package com.example.fitvending;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,30 +18,31 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        CronometroFragment.OnFragmentInteractionListener,
+        MainFragment.OnFragmentInteractionListener,
+        AlimentacionFragment.OnFragmentInteractionListener,
+        LogrosFragment.OnFragmentInteractionListener,
+        PerfilFragment.OnFragmentInteractionListener,
+        RutinaFragment.OnFragmentInteractionListener
+{
+
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-
-            }
-        });
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        Fragment frag = new MainFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.content_main, frag).commit();
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -81,11 +84,16 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Intent intent;
+        Fragment myFragment = null;
+        boolean seleccion = false;
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            myFragment = new MainFragment();
+            seleccion = true;
+            toolbar.setTitle("Fit Vending");
         } else if (id == R.id.nav_gallery) {
-            intent = new Intent(this, CronometroActivity.class);
-            startActivity(intent);
+            myFragment = new CronometroFragment();
+            seleccion = true;
+            toolbar.setTitle("Cronometro");
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {
@@ -95,22 +103,41 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.nav_Rutina) {
-            intent = new Intent(this, RutinaActivity.class);
-            startActivity(intent);
+            myFragment = new RutinaFragment();
+            seleccion = true;
+            toolbar.setTitle("Rutina");
         } else if (id == R.id.nav_Alimentacion) {
-            intent = new Intent(this, AlimentacionActivity.class);
-            startActivity(intent);
+            myFragment = new AlimentacionFragment();
+            seleccion = true;
+            toolbar.setTitle("Alimentacion");
         }  else if (id == R.id.nav_Perfil) {
-            intent = new Intent(this, PerfilActivity.class);
-            startActivity(intent);
+            myFragment = new PerfilFragment();
+            seleccion = true;
+            toolbar.setTitle("Perfil");
         }   else if (id == R.id.nav_Desafios) {
-            intent = new Intent(this, LogrosActivity.class);
+            myFragment = new LogrosFragment();
+            seleccion = true;
+            toolbar.setTitle("Desafios");
+        } else if (id == R.id.nav_contpasos) {
+        intent = new Intent(this, ContPasosActivity.class);
+        startActivity(intent);
+        }
+        else if (id == R.id.nav_shake) {
+            intent = new Intent(this, ShakeActivity.class);
             startActivity(intent);
         }
 
+        if(seleccion)
+        {
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_main, myFragment).commit();
+        }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
