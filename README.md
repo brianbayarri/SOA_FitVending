@@ -14,10 +14,10 @@ Materiales:
 * Luces leds roja y verde
 * Tira de luces leds blancas
 * Buzzer YHE12
-* Motor DC 3V - Modelo 130
+* Servo motor
 * Display LCD 16*2 con módulo l2C
 * Sensor Infrarrojo MH-FlyingFish
-* Sensor de temperatura LM35
+* Sensor de temperatura DHT11
 * Protoboard de 830 puntos
 * Cables de protoboard macho-hembra y macho-macho
 * Fotoresistor LDR
