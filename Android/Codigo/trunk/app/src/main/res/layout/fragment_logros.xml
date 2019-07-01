@@ -57,13 +57,12 @@
         <CheckedTextView
             android:id="@+id/check_Logro1"
             android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:text="Desafio 1"
+            android:layout_height="40dp"
+            android:text="@string/check1"
             android:layout_marginStart="30dp"
             android:layout_marginTop="220dp"
             android:checkMark="?android:attr/listChoiceIndicatorMultiple"
             android:gravity="center"
-
             />
 
 
@@ -81,8 +80,8 @@
         <CheckedTextView
             android:id="@+id/check_Logro2"
             android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:text="Desafio 2"
+            android:layout_height="40dp"
+            android:text="@string/check2"
             android:layout_marginStart="30dp"
             android:layout_marginTop="290dp"
             android:checkMark="?android:attr/listChoiceIndicatorMultiple"
@@ -98,15 +97,15 @@
             android:layout_marginTop="290dp"
             android:background="#6DBE11"
             android:gravity="center"
-            android:text="20"
+            android:text="40"
             android:textColor="#FFFFFF" />
 
 
         <CheckedTextView
             android:id="@+id/check_Logro3"
             android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:text="Desafio 3"
+            android:layout_height="40dp"
+            android:text="@string/check3"
             android:layout_marginStart="30dp"
             android:layout_marginTop="360dp"
             android:checkMark="?android:attr/listChoiceIndicatorMultiple"
@@ -121,14 +120,14 @@
             android:layout_marginTop="360dp"
             android:background="#6DBE11"
             android:gravity="center"
-            android:text="30"
+            android:text="70"
             android:textColor="#FFFFFF"/>
 
         <CheckedTextView
             android:id="@+id/check_Logro4"
             android:layout_width="250dp"
-            android:layout_height="30dp"
-            android:text="Desafio 4"
+            android:layout_height="40dp"
+            android:text="@string/check4"
             android:layout_marginStart="30dp"
             android:layout_marginTop="430dp"
             android:checkMark="?android:attr/listChoiceIndicatorMultiple"
@@ -143,7 +142,7 @@
             android:layout_marginTop="430dp"
             android:background="#6DBE11"
             android:gravity="center"
-            android:text="40"
+            android:text="500"
             android:textColor="#FFFFFF"/>
 
 

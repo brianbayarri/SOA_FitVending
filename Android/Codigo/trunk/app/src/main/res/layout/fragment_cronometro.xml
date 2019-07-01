@@ -7,25 +7,11 @@
     tools:context=".CronometroFragment">
 
     <TextView
-        android:id="@+id/CronometroTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/menu_Cronometro" />
-
-    <TextView
         android:id="@+id/Cronometro_actividad"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginVertical="80dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginEnd="253dp"
         android:text="@string/actividad" />
 
     <TextView
@@ -72,14 +58,11 @@
 
     <ImageButton
         android:id="@+id/btn_correr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
         android:layout_marginVertical="125dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginLeft="120dp"
+        android:layout_marginStart="120dp"
         android:layout_marginEnd="48dp"
-        android:layout_toStartOf="@+id/btn_bicicleta"
-        android:layout_toEndOf="@+id/btn_caminar"
         android:background="@color/colorAccent"
         app:srcCompat="@drawable/correr" />
 
@@ -88,8 +71,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="125dp"
-        android:layout_marginLeft="215dp"
-        android:layout_marginEnd="47dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="40dp"
         android:layout_toStartOf="@+id/btn_nadar"
         android:background="@color/colorAccent"
         app:srcCompat="@drawable/bicicleta" />
@@ -103,7 +86,7 @@
         android:layout_marginVertical="125dp"
         android:layout_marginLeft="310dp"
         android:layout_marginTop="125dp"
-        android:layout_marginEnd="53dp"
+        android:layout_marginEnd="40dp"
         android:background="@color/colorAccent"
         app:srcCompat="@drawable/nadar" />
 

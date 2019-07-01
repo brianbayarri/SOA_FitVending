@@ -8,16 +8,38 @@
     tools:context="com.example.fitvending.MainFragment" >
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/texto_elegir"
-            android:textColor="#F9FCF7"
-            android:layout_marginTop="110dp"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginLeft="10dp"
-            />
+    <TextView
+        android:id="@+id/elegirProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="110dp"
+        android:text="@string/texto_elegir"
+        android:textColor="#F9FCF7"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="500"
+        android:textColor="#F9FCF7"
+        android:layout_marginTop="110dp"
+        android:layout_marginStart="360dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginLeft="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/MyCoins"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/moneda"
+        android:layout_marginTop="113dp"
+        android:layout_marginStart="330dp"
+        />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -38,6 +60,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -63,6 +86,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
+
 
                         <ImageView
                             android:id="@+id/img_Chocoarroz"
@@ -97,6 +121,31 @@
                             android:id="@+id/btn_imgChocoarroz"
                             android:background="@android:color/transparent"
                             />
+
+                        <ImageView
+                            android:id="@+id/Coin1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/moneda"
+                            android:layout_marginTop="175dp"
+                            android:layout_marginStart="60dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/CoinValue1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="180dp"
+                            android:text="30"
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/lbl_sinStockP1"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                             />
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -145,12 +194,39 @@
                             android:id="@+id/btn_imgCereal"
                             android:background="@android:color/transparent"/>
 
+                        <ImageView
+                            android:id="@+id/Coin2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/moneda"
+                            android:layout_marginTop="175dp"
+                            android:layout_marginStart="60dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/CoinValue2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="180dp"
+                            android:text="20"
+
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/lbl_sinStockP2"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            />
+
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearl"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginBottom="5dp"
@@ -201,6 +277,31 @@
                             android:id="@+id/btn_imgFrutos"
                             android:background="@android:color/transparent"/>
 
+                        <ImageView
+                            android:id="@+id/Coin3"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginStart="60dp"
+                            android:layout_marginTop="175dp"
+                            android:src="@drawable/moneda" />
+
+                        <TextView
+                            android:id="@+id/CoinValue3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="180dp"
+                            android:text="40"
+
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/lbl_sinStockP3"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            />
+
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
                 <android.support.v7.widget.CardView
@@ -248,10 +349,65 @@
                             android:id="@+id/btn_imgAlfajor"
                             android:background="@android:color/transparent"/>
 
+                        <ImageView
+                            android:id="@+id/Coin4"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/moneda"
+                            android:layout_marginTop="175dp"
+                            android:layout_marginStart="60dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/CoinValue4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="180dp"
+                            android:text="50"
+
+                            android:textColor="#000000"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/lbl_sinStockP4"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            />
+
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
 
             </LinearLayout>
+
+
         </LinearLayout>
+
+    <TextView
+        android:id="@+id/lbl_Calorias"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Calorias consumidas en el día"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/lbl_CaloriasNum_P"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="0.0"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/linearLayout"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

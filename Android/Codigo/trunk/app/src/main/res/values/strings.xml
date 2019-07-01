@@ -18,6 +18,7 @@
     <string name="actividad">Seleccione actividad:</string>
     <string name="calorias">Calorias quemadas:</string>
 
+
     <string name="titulo_1">Chocoarroz</string>
     <string name="calorias_1">Valor energético: 99 Cal</string>
     <string name="titulo_2">Cereal Fort</string>
@@ -26,8 +27,23 @@
     <string name="calorias_3">Valor energético: 99 Cal</string>
     <string name="titulo_4">Alfajor Ser</string>
     <string name="calorias_4">Valor energético: 99 Cal</string>
+
     <string name="texto_elegir">Elija el producto...</string>
+
+    <string name="check1">Completar la rutina de entrenamiento de hoy</string>
+    <string name="check2">No comer ningun producto envasado</string>
+    <string name="check3">Hacer 500 abdominales</string>
+    <string name="check4">Caminar hasta Lujan</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>

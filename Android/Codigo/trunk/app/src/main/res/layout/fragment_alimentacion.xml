@@ -7,6 +7,7 @@
     tools:context=".AlimentacionFragment">
 
 
+
     <Switch
         android:id="@+id/sw_desayuno"
         android:layout_width="120dp"
@@ -132,7 +133,7 @@
         android:id="@+id/lbl_CaloriasNum_A"
         android:layout_width="300dp"
         android:layout_height="25dp"
-        android:text="0.0/0.0"
+        android:text="0.0"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="490dp"
         android:gravity="center" />

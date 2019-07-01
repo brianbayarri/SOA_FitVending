@@ -8,18 +8,17 @@
     android:background="#FFFFFF"
     >
 
-       <TextView
-            android:id="@+id/ActividadTitle"
-            android:layout_width="118dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="125dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginBottom="49dp"
-            android:text="Musculo"
-            android:background="#6DBD11"
-            android:gravity="center"
-            android:textColor="#FCF7F7"
-            />
+    <TextView
+        android:id="@+id/ActividadTitle"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="125dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="49dp"
+        android:background="#6DBD11"
+        android:gravity="center"
+        android:text="Actividad"
+        android:textColor="#FCF7F7" />
 
         <Spinner
             android:id="@+id/ActividadSpinner"
