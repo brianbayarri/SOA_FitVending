@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Bluetoothactivity">
+
+    <Button
+        android:id="@+id/IdDesconectar"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="650dp"
+        android:text="DESCONECTAR"
+        tools:layout_editor_absoluteX="500dp"
+        tools:layout_editor_absoluteY="158dp" />
+
+
+    <Button
+        android:id="@+id/IdEncender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:text="ENCENDER LED"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="270dp"
+
+        />
+
+    <Button
+        android:id="@+id/IdApagar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:text="APAGAR LED"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="667dp" />
+
+    <TextView
+        android:id="@+id/IdBufferIn"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="450dp"
+        android:text="Dato:"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="365dp" />
+
+    <TextView
+        android:id="@+id/IdControl"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="CONTROL_LED"
+        tools:layout_editor_absoluteX="176dp"
+        tools:layout_editor_absoluteY="68dp"
+
+        />
+
+</RelativeLayout>
