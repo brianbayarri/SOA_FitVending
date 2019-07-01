@@ -1,12 +1,17 @@
 package com.example.fitvending;
 
+
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -16,6 +21,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.UUID;
+import static com.example.fitvending.BtConnectionService.detenerBt;
+import static com.example.fitvending.BtConnectionService.enviarDatosAArduino;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -28,10 +45,25 @@ public class MainActivity extends AppCompatActivity
 {
 
     private Toolbar toolbar;
+    ImageButton chocoarroz,cereal;
 
+    //VARIABLES USADAS PARA DEFINIR EL COLOR DE LOS PRODUCTOS
+    public String colorSinStock = "#D31E1F29";
+    public String colorHayStock = "#FFFFFF";
+    public String userName;
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle datos = this.getIntent().getExtras();
+         userName = datos.getString("UserName");
+        SharedPreferences prefs =
+                getSharedPreferences("MisPreferencias", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("UserName", userName);
+        editor.commit();
+
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,10 +73,22 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        ////COMIENZA EL SERVICE DE LOS SENSORES
+        Intent pasosService = new Intent(this,SensorsService.class);
+        startService(pasosService);
         Fragment frag = new MainFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.content_main, frag).commit();
         navigationView.setNavigationItemSelectedListener(this);
+
     }
+
+    @Override
+    public void onResume(){
+
+        super.onResume();
+        Toast.makeText(getBaseContext(), BtConnectionService.Stock, Toast.LENGTH_LONG).show();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -55,6 +99,7 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -85,6 +130,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent;
         Fragment myFragment = null;
+
         boolean seleccion = false;
         if (id == R.id.nav_home) {
             myFragment = new MainFragment();
@@ -95,10 +141,14 @@ public class MainActivity extends AppCompatActivity
             seleccion = true;
             toolbar.setTitle("Cronometro");
         } else if (id == R.id.nav_slideshow) {
+            //intent = new Intent(this,Bluetoothactivity.class);
+            //startActivity(intent);
 
         } else if (id == R.id.nav_tools) {
 
-        } else if (id == R.id.nav_share) {
+        }
+
+         else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
@@ -118,13 +168,6 @@ public class MainActivity extends AppCompatActivity
             myFragment = new LogrosFragment();
             seleccion = true;
             toolbar.setTitle("Desafios");
-        } else if (id == R.id.nav_contpasos) {
-        intent = new Intent(this, ContPasosActivity.class);
-        startActivity(intent);
-        }
-        else if (id == R.id.nav_shake) {
-            intent = new Intent(this, ShakeActivity.class);
-            startActivity(intent);
         }
 
         if(seleccion)
@@ -140,4 +183,43 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    /*
+    @Override
+    public void onPause()
+    {
+        super.onPause();
+        detenerBt();
+    }*/
+
+    @Override
+    public void onStop()
+    {
+        super.onStop();
+        //detenerBt();
+    }
+
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        Intent restaurar = new Intent(this,PantallaDeCarga.class);
+        startActivity(restaurar);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        detenerBt();
+        Intent servicioSensores = new Intent(this,SensorsService.class);
+        stopService(servicioSensores);
+    }
+
+
+    public String getUserNameByFragment()
+    {
+        return userName;
+    }
+
+
 }
