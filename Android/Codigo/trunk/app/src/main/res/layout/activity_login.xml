@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout"
+        >
+
+    <LinearLayout
+        android:id="@+id/linearImagen"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="0dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/snacks">
+
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtBienvenida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearImagen"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="¡BIENVENIDOS A FITVENDING!"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"
+
+            />
+        <TextView
+            android:id="@+id/txtIniciaSesion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtBienvenida"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="Iniciar sesión"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/txtIniciaSesion"
+        android:layout_marginTop="25dp"
+        android:layout_centerInParent="true"
+        android:hint="Usuario"
+            android:selectAllOnFocus="true"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username"
+        android:hint="Contraseña"
+        android:ems="10"
+        android:selectAllOnFocus="true"
+        android:layout_centerInParent="true"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_below="@id/password"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:enabled="true"
+        android:text="Iniciar Sesión"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.2"
+        />
+        <Button
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_below="@id/login"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:enabled="true"
+            android:text="Registrar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintVertical_bias="0.2"
+            />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
