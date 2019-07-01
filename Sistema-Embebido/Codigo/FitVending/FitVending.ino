@@ -1,192 +1,128 @@
-#include <DHT.h>
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+#include <Wire.h>
+#include <DHT.h>
+#include <Servo.h>
+#include <String.h>
+#define  f4    2865    
+#define  a4s   2146
+#define  c5    1912    
+#define  d5    1706
+#define  d5s   1608
+#define  f5    1433    
+#define  a5s   1073
+#define  R     0      
 
-//Declaracion de pines
-//int LED_ROJO = 2;
-int TEMPERATURA = 2;
-int LED_AZUL = 3;
-int BUZZER = 4;
-//Pines con PWM
-int MOTOR_1 = 5;
-int MOTOR_2 = 6;
-int MOTOR_3 = 9;
-int MOTOR_4 = 10;
-//Fin Pines con PWM
-int INFRARROJO_1 = 7;
-int INFRARROJO_2 = 8;
-int INFRARROJO_3 = 11;
-int INFRARROJO_4 = 12;
+
+int melody2[] = {  f4,  f4, f4,  a4s,   f5,  d5s,  d5,  c5, a5s, f5, d5s,  d5,  c5, a5s, f5, d5s, d5, d5s,   c5};
+int beats2[]  = {  21,  21, 21,  128,  128,   21,  21,  21, 128, 64,  21,  21,  21, 128, 64,  21, 21,  21, 128 };
+
+int MAX_COUNT;
+long tempo = 10000;
+int pause = 1000;
+int rest_count = 50;
+int toneM = 0;
+int beat = 0;
+long duration  = 0;
+int INFRARROJO_1 = 2;
+int INFRARROJO_2 = 3;
+int INFRARROJO_3 = 4;
+int INFRARROJO_4 = 5;
+int LED = 6;
+int BUZZER = 7;
+int SENSOR_TEMPERATURA = 8;
 int TIRA_LED = 13;
-//Pines destinado al Bluetooth
-int RECEPTOR = 0;
-int TRANSMISOR = 1;
-//Fin Pines destinados al Bluetooth
-//Fin declaracion de pines
 
-//Declaracion de variables
+Servo SERVO_1;
+Servo SERVO_3;
+Servo SERVO_4;
+
 int temperatura;
-int pedido;
 int lightlevel;
-int tiempo_inicial=0;
-int tiempo_actual=0;
-int duracion_buzzer=3000;     
-boolean hay_stock = false;         
-boolean sonando = false;
-boolean estado_reposo = true;
-boolean estado_procesandoPedido = false;
-boolean estado_esperandoRetiro = false;
-int tiempo_inicial_motor=0;
-int tiempo_actual_motor=0;
-int duracion_motor = 2000;
-int tiempo_inicial_buzzer=0;
-int tiempo_actual_buzzer=0;
-int duracion_buzzer=3000;  
-//Fin declaracion de variables
-DHT dht(SENSOR, DHT11);
+int stock;
+char state;
+String mensajeStock;
+boolean tiraOn = false;
+
+DHT dht (SENSOR_TEMPERATURA, DHT11);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setup() {
-  pinMode(LED_ROJO, OUTPUT);
-  pinMode(LED_AZUL, OUTPUT);
-  pinMode(INFRARROJO_1,INPUT);
-  pinMode(INFRARROJO_2,INPUT);
-  pinMode(INFRARROJO_3,INPUT);
-  pinMode(INFRARROJO_4,INPUT);
-  digitalWrite(LED_ROJO,LOW);
-  digitalWrite(LED_AZUL,LOW);
+  pinMode(LED, OUTPUT);
+  pinMode(TIRA_LED, OUTPUT);
+  pinMode(BUZZER, OUTPUT);
+  pinMode(INFRARROJO_1, INPUT);
+  pinMode(INFRARROJO_2, INPUT);
+  pinMode(INFRARROJO_3, INPUT);
+  pinMode(INFRARROJO_4, INPUT);
+  digitalWrite(LED, LOW);
+  digitalWrite(TIRA_LED, LOW);
+  SERVO_1.attach(9);
+  SERVO_4.attach(10);
   dht.begin();
   Wire.begin();
   lcd.begin(16, 2);
   lcd.clear();
   lcd.backlight();
-  tiempo_inicial_motores=millis();
-  tiempo_inicial_buzzer=millis();
+  Serial.begin(38400);  
+  Serial.println("MODULO CONECTADO");
+  Serial.print("#");
 }
 
 void loop() {
-	if(estado_reposo)
-	{
-		digitalWrite(LED_ROJO, HIGH);
-		lcd.setCursor(1,0);
-		lcd.print("Elija producto");
-		sensarTemperatura();
-		sensarLuz();
-		/*
-		if(señal de pedido)
-		{
-			estado_reposo = false;
-			estado_procesandoPedido = true;
-		}
-		*/
-	}
-	else
-	{
-		if(estado_procesandoPedido)
-		{
-			sensarTemperatura();
-			sensarLuz();
-			switch (producto) 
-			{
-			  case 1:
-				stock = digitalRead(INFRARROJO_1);
-				if(validarStock(stock))
-				{
-					//Girar motor 1
-					estado_procesandoPedido = false;
-					estado_esperandoRetiro = true;
-				}
-				else
-				{
-					estado_procesandoPedido = false;
-					estado_reposo = true;
-				}
-				break;
-			  case 2:
-				stock = digitalRead(INFRARROJO_2);
-				if(validarStock(stock))
-				{
-					//Girar motor 2
-					estado_procesandoPedido = false;
-					estado_esperandoRetiro = true;
-				}
-				else
-				{
-					estado_procesandoPedido = false;
-					estado_reposo = true;
-				}
-				break;
-			  case 3:
-			    stock = digitalRead(INFRARROJO_3);
-				if(validarStock(stock))
-				{
-					//Girar motor 3
-					estado_procesandoPedido = false;
-					estado_esperandoRetiro = true;
-				}
-				else
-				{
-					estado_procesandoPedido = false;
-					estado_reposo = true;
-				}
-			    break;
-			  default:
-				stock = digitalRead(INFRARROJO_4);
-				if(validarStock(stock))
-				{
-					//Girar motor 4
-					estado_procesandoPedido = false;
-					estado_esperandoRetiro = true;
-				}
-				else
-				{
-					estado_procesandoPedido = false;
-					estado_reposo = true;
-				}
-				break;
-			}
-		}
-		else
-		{
-			sensarTemperatura();
-			sensarLuz();
-			tiempo_actual_motor = millis() - tiempo_inicial_motor;
-			if(tiempo_actual_motor > duracion_motor)
-			{
-				digitalWrite(LED_ROJO, LOW);
-				digitalWrite(LED_AZUL, HIGH);
-				lcd.clear();
-				lcd.setCursor(1,0);
-				lcd.print("Retire producto");
-				calcularTemperatura();
-				tiempo_actual_buzzer = millis() - tiempo_inicial_buzzer;
-				if(sonando)
-				{
-				  if(tiempo_actual_buzzer > duracion_buzzer)
-				  {
-					noTone(7);
-					sonando = false;
-					tiempo_inicial_buzzer = millis();
-					estado_esperandoRetiro = false;
-					estado_reposo = true;
-					digitalWrite(LED_ROJO, HIGH);
-					digitalWrite(LED_AZUL, LOW);
-					lcd.clear();
-				  }
-				}
-				else
-				{
-				  tone(7,600);
-				  sonando = true;
-				}
-			}
-		}
-	}
+  lcd.setCursor(1,0);
+  lcd.print("Elija producto");
+  sensarTemperatura();
+  sensarLuz();
+  if(Serial.available())
+  {
+    state = Serial.read();
+    Serial.flush();
+    switch(state)
+    {
+      case '0':
+        mensajeStock = validarStock();
+        Serial.print(mensajeStock);
+        Serial.print("#");
+        break;
+      case '1':
+        expenderProducto(1);
+        sensarTemperatura();
+        sensarLuz();
+        break;
+      case '3':
+        expenderProducto(3);
+        sensarTemperatura();
+        sensarLuz();
+        break;
+      case '4':
+        expenderProducto(4);
+        sensarTemperatura();
+        sensarLuz();
+        break;
+      case '5':
+        if(!tiraOn)
+        {
+          digitalWrite(TIRA_LED, HIGH);
+          tiraOn = true;
+        }
+        else
+        {
+          digitalWrite(TIRA_LED, LOW);
+          tiraOn = false;
+        }
+        break;
+      case '6':
+        sonarStarWars(); 
+        sensarTemperatura();
+        sensarLuz(); 
+        break;
+    }
+  } 
 }
 
 void sensarTemperatura()
 {
-	temperatura = dht.readTemperature();
+    temperatura = dht.readTemperature();
     lcd.setCursor(5,1);
     lcd.print(temperatura);
     lcd.print((char)223);
@@ -195,24 +131,134 @@ void sensarTemperatura()
 
 void sensarLuz()
 {
-   //Nivel leido del fotoresistor
-  lightlevel = analogRead(A3);
-  //25 es el valor que ponemos nosotros
-  if(lightlevel < 25 )
+  lightlevel = analogRead(A0);
+  if(lightlevel < 5)
   {
     digitalWrite(TIRA_LED, HIGH);
   }
   else
   {
-    digitalWrite(TIRA_LED, LOW);
+    if(!tiraOn)
+    {
+      digitalWrite(TIRA_LED, LOW);
+    }
+  }
+  delay(1000);
+}
+
+String validarStock()
+{
+  String auxiliar;
+  stock = digitalRead(INFRARROJO_1);
+  if (stock == 1)
+  {
+    auxiliar = "1-";
+  }
+  else
+  {
+    auxiliar = "0-";
+  }
+  stock = digitalRead(INFRARROJO_2);
+  if (stock == 1)
+  {
+    auxiliar += "1-";
+  }
+  else
+  {
+    auxiliar += "0-";
+  }
+  stock = digitalRead(INFRARROJO_3);
+  if (stock == 1)
+  {
+    auxiliar += "1-";
+  }
+  else
+  {
+    auxiliar += "0-";
+  }
+  stock = digitalRead(INFRARROJO_4);
+  if (stock == 1)
+  {
+    auxiliar += "1";
+  }
+  else
+  {
+    auxiliar += "0";
+  }
+  return auxiliar;
+}
+
+void sonarStarWars()
+{
+  MAX_COUNT = sizeof(melody2) / 2;
+  for (int i = 0; i < MAX_COUNT; i++) 
+  {
+    toneM = melody2[i];
+    beat = beats2[i];
+    duration = beat * tempo;
+    playTone();
+    delayMicroseconds(pause);
   }
 }
 
-boolean validarStock(int stock)
+void playTone() {
+
+  long elapsed_time = 0;
+  if (toneM > 0) 
+  {
+    digitalWrite(TIRA_LED,HIGH);
+    while (elapsed_time < duration) 
+    {
+      digitalWrite(BUZZER,HIGH);
+      delayMicroseconds(toneM / 2);
+      digitalWrite(BUZZER, LOW);
+      delayMicroseconds(toneM / 2);
+      elapsed_time += (toneM);
+    }
+    digitalWrite(TIRA_LED,LOW);
+  }
+  else 
+  {
+    for (int j = 0; j < rest_count; j++) 
+    {
+      delayMicroseconds(duration);
+    }
+  }
+}
+
+void expenderProducto(int producto)
 {
-	if(stock == 0)
-	{
-		return true:
-	}	
-	return false;
+  if(producto == 1)
+  {
+    SERVO_1.write(180);
+    delay(900);
+    SERVO_1.write(90);
+  }
+  else
+  {
+    if(producto == 3)
+    {
+      SERVO_3.attach(11);
+      SERVO_3.write(0);
+      delay(800);
+      SERVO_3.detach();
+    }
+    else
+    {
+      SERVO_4.write(180);
+      delay(800);
+      SERVO_4.write(0);
+    }
+  }
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Retire producto");
+  tone(7, 600);
+  digitalWrite(LED, HIGH);
+  delay(3000);
+  noTone(7);
+  digitalWrite(LED, LOW);
+  lcd.clear();
+  lcd.setCursor(1,0);
+  lcd.print("Elija producto");
 }
