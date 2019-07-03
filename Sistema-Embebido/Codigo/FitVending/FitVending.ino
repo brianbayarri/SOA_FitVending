@@ -31,7 +31,6 @@ int LED = 6;
 int BUZZER = 7;
 int SENSOR_TEMPERATURA = 8;
 int TIRA_LED = 13;
-
 Servo SERVO_1;
 Servo SERVO_3;
 Servo SERVO_4;
@@ -39,6 +38,12 @@ Servo SERVO_4;
 int temperatura;
 int lightlevel;
 int stock;
+int tiempo_inicial=0;
+int tiempo_actual=0;
+int duracion_buzzer=3000;    
+int duracion_servo = 800;          
+boolean sonando = false;
+boolean girando = false;
 char state;
 String mensajeStock;
 boolean tiraOn = false;
@@ -66,6 +71,7 @@ void setup() {
   Serial.begin(38400);  
   Serial.println("MODULO CONECTADO");
   Serial.print("#");
+  tiempo_inicial=millis();
 }
 
 void loop() {
@@ -143,7 +149,6 @@ void sensarLuz()
       digitalWrite(TIRA_LED, LOW);
     }
   }
-  delay(1000);
 }
 
 String validarStock()
@@ -230,35 +235,85 @@ void expenderProducto(int producto)
 {
   if(producto == 1)
   {
-    SERVO_1.write(180);
-    delay(900);
-    SERVO_1.write(90);
+	tiempo_actual = millis() - tiempo_inicial;
+	if(girando)
+	{
+		if(tiempo_actual > duracion_servo)
+		{
+			SERVO_1.write(90);
+			girando = false;
+			tiempo_inicial = millis();
+		}
+	}
+	else
+	{
+		SERVO_1.write(180);
+		girando = true;
+	}
+    
   }
   else
   {
     if(producto == 3)
     {
-      SERVO_3.attach(11);
-      SERVO_3.write(0);
-      delay(800);
-      SERVO_3.detach();
-    }
-    else
-    {
-      SERVO_4.write(180);
-      delay(800);
-      SERVO_4.write(0);
-    }
+		tiempo_actual = millis() - tiempo_inicial;
+		if(girando)
+		{
+			if(tiempo_actual > duracion_servo)
+			{
+				SERVO_3.detach();
+				girando = false;
+				tiempo_inicial = millis();
+			}
+		}
+		else
+		{
+			SERVO_3.attach(11);
+			SERVO_3.write(0);
+			girando = true;
+		}
+	}
+	else
+	{
+		tiempo_actual = millis() - tiempo_inicial;
+		if(girando)
+		{
+			if(tiempo_actual > duracion_servo)
+			{
+				SERVO_4.write(0);
+				girando = false;
+				tiempo_inicial = millis();
+			}
+		}
+		else
+		{
+			SERVO_4.write(180);
+			girando = true;
+		}
+	}
   }
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("Retire producto");
-  tone(7, 600);
-  digitalWrite(LED, HIGH);
-  delay(3000);
-  noTone(7);
-  digitalWrite(LED, LOW);
-  lcd.clear();
-  lcd.setCursor(1,0);
-  lcd.print("Elija producto");
+  tiempo_actual = millis() - tiempo_inicial;
+  if(sonando)
+  {
+	  if(tiempo_actual > duracion_buzzer)
+	  {
+		  noTone(7);
+		  digitalWrite(LED, LOW);
+		  lcd.clear();
+		  lcd.setCursor(1,0);
+		  lcd.print("Elija producto");
+		  sonando = false;
+		  tiempo_inicial = millis();
+	  }
+  }
+  else
+  {
+	  lcd.clear();
+	  lcd.setCursor(0,0);
+	  lcd.print("Retire producto");
+	  tone(7, 600);
+	  digitalWrite(LED, HIGH);
+	  sonando = true;
+  }
+  
 }
