@@ -11,7 +11,9 @@
 #define  f5    1433    
 #define  a5s   1073
 #define  R     0      
-
+#define hayStock 1
+#define maxVel 180
+#define stop 90
 
 int melody2[] = {  f4,  f4, f4,  a4s,   f5,  d5s,  d5,  c5, a5s, f5, d5s,  d5,  c5, a5s, f5, d5s, d5, d5s,   c5};
 int beats2[]  = {  21,  21, 21,  128,  128,   21,  21,  21, 128, 64,  21,  21,  21, 128, 64,  21, 21,  21, 128 };
@@ -31,6 +33,7 @@ int LED = 6;
 int BUZZER = 7;
 int SENSOR_TEMPERATURA = 8;
 int TIRA_LED = 13;
+int nivel_luz = 5;
 Servo SERVO_1;
 Servo SERVO_3;
 Servo SERVO_4;
@@ -38,6 +41,7 @@ Servo SERVO_4;
 int temperatura;
 int lightlevel;
 int stock;
+int producto;
 int tiempo_inicial=0;
 int tiempo_actual=0;
 int duracion_buzzer=3000;    
@@ -47,6 +51,7 @@ boolean girando = false;
 char state;
 String mensajeStock;
 boolean tiraOn = false;
+boolean milisrunning = false;
 
 DHT dht (SENSOR_TEMPERATURA, DHT11);
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -79,6 +84,10 @@ void loop() {
   lcd.print("Elija producto");
   sensarTemperatura();
   sensarLuz();
+  if(milisrunning)
+  {
+	  expenderProducto();
+  }
   if(Serial.available())
   {
     state = Serial.read();
@@ -91,17 +100,20 @@ void loop() {
         Serial.print("#");
         break;
       case '1':
-        expenderProducto(1);
+        expenderProducto();
+		producto = 1;
         sensarTemperatura();
         sensarLuz();
         break;
       case '3':
-        expenderProducto(3);
+        expenderProducto();
+		producto = 3;
         sensarTemperatura();
         sensarLuz();
         break;
       case '4':
-        expenderProducto(4);
+        expenderProducto();
+		producto = 4;
         sensarTemperatura();
         sensarLuz();
         break;
@@ -138,7 +150,7 @@ void sensarTemperatura()
 void sensarLuz()
 {
   lightlevel = analogRead(A0);
-  if(lightlevel < 5)
+  if(lightlevel < nivel_luz)
   {
     digitalWrite(TIRA_LED, HIGH);
   }
@@ -155,7 +167,7 @@ String validarStock()
 {
   String auxiliar;
   stock = digitalRead(INFRARROJO_1);
-  if (stock == 1)
+  if (stock == hayStock)
   {
     auxiliar = "1-";
   }
@@ -164,7 +176,7 @@ String validarStock()
     auxiliar = "0-";
   }
   stock = digitalRead(INFRARROJO_2);
-  if (stock == 1)
+  if (stock == hayStock)
   {
     auxiliar += "1-";
   }
@@ -173,7 +185,7 @@ String validarStock()
     auxiliar += "0-";
   }
   stock = digitalRead(INFRARROJO_3);
-  if (stock == 1)
+  if (stock == hayStock)
   {
     auxiliar += "1-";
   }
@@ -182,7 +194,7 @@ String validarStock()
     auxiliar += "0-";
   }
   stock = digitalRead(INFRARROJO_4);
-  if (stock == 1)
+  if (stock == hayStock)
   {
     auxiliar += "1";
   }
@@ -202,7 +214,6 @@ void sonarStarWars()
     beat = beats2[i];
     duration = beat * tempo;
     playTone();
-    delayMicroseconds(pause);
   }
 }
 
@@ -215,23 +226,14 @@ void playTone() {
     while (elapsed_time < duration) 
     {
       digitalWrite(BUZZER,HIGH);
-      delayMicroseconds(toneM / 2);
       digitalWrite(BUZZER, LOW);
-      delayMicroseconds(toneM / 2);
       elapsed_time += (toneM);
     }
     digitalWrite(TIRA_LED,LOW);
   }
-  else 
-  {
-    for (int j = 0; j < rest_count; j++) 
-    {
-      delayMicroseconds(duration);
-    }
-  }
 }
 
-void expenderProducto(int producto)
+void expenderProducto()
 {
   if(producto == 1)
   {
@@ -240,14 +242,15 @@ void expenderProducto(int producto)
 	{
 		if(tiempo_actual > duracion_servo)
 		{
-			SERVO_1.write(90);
+			SERVO_1.write(stop);
 			girando = false;
 			tiempo_inicial = millis();
+      milisrunning = false;
 		}
 	}
 	else
 	{
-		SERVO_1.write(180);
+		SERVO_1.write(maxVel);
 		girando = true;
 	}
     
@@ -264,12 +267,13 @@ void expenderProducto(int producto)
 				SERVO_3.detach();
 				girando = false;
 				tiempo_inicial = millis();
+        milisrunning = false;
 			}
 		}
 		else
 		{
 			SERVO_3.attach(11);
-			SERVO_3.write(0);
+			SERVO_3.write(stop);
 			girando = true;
 		}
 	}
@@ -280,14 +284,15 @@ void expenderProducto(int producto)
 		{
 			if(tiempo_actual > duracion_servo)
 			{
-				SERVO_4.write(0);
+				SERVO_4.write(stop);
 				girando = false;
+        milisrunning = false;
 				tiempo_inicial = millis();
 			}
 		}
 		else
 		{
-			SERVO_4.write(180);
+			SERVO_4.write(maxVel);
 			girando = true;
 		}
 	}
