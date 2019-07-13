@@ -113,7 +113,7 @@ public class AlimentacionFragment extends Fragment {
         l_desayuno.add("Huevos y panceta");
         l_desayuno.add("Medialunas");
         l_desayuno.add("Omelet");
-        l_desayuno.add("Tostado");
+        l_desayuno.add("Tostadas");
         l_desayuno.add("NINGUNA");
         adap_desayuno = new ArrayAdapter<String>(contextoActual, R.layout.support_simple_spinner_dropdown_item,l_desayuno);
 
@@ -159,7 +159,7 @@ public class AlimentacionFragment extends Fragment {
 
         ArrayList<String> l_porcion = new ArrayList<>();
         l_porcion.add("Chica (100gr)");
-        l_porcion.add("Mediana (150gr)");
+        l_porcion.add("Mediana (200gr)");
         l_porcion.add("Grande (300gr");
         adap_porcion = new ArrayAdapter<String>(contextoActual, R.layout.support_simple_spinner_dropdown_item,l_porcion);
 
@@ -334,51 +334,51 @@ public class AlimentacionFragment extends Fragment {
                     switch (id) {
 
                         case "0HP":
-                            calorias = 300.0 * porcion;
+                            calorias = 378.0 * porcion;
                             break;
 
                         case "1MP":
-                            calorias = 100.0 * porcion;
+                            calorias = 400.0 * porcion;
                             break;
 
                         case "2OP":
-                            calorias = 250 * porcion;
+                            calorias = 252 * porcion;
                             break;
 
                         case "3TP":
-                            calorias = 220 * porcion;
+                            calorias = 313 * porcion;
                             break;
 
                         case "0CP":
-                            calorias = 220 * porcion;
+                            calorias = 250 * porcion;
                             break;
 
                         case "1EP":
-                            calorias = 220 * porcion;
+                            calorias = 360 * porcion;
                             break;
 
                         case "2PP":
-                            calorias = 220 * porcion;
+                            calorias = 132 * porcion;
                             break;
 
                         case "3PP":
-                            calorias = 220 * porcion;
+                            calorias = 239 * porcion;
                             break;
 
                         case "0BP":
-                            calorias = 220 * porcion;
+                            calorias = 89 * porcion;
                             break;
 
                         case "1BP":
-                            calorias = 220 * porcion;
+                            calorias = 69 * porcion;
                             break;
 
                         case "2SP":
-                            calorias = 220 * porcion;
+                            calorias = 352 * porcion;
                             break;
 
                         case "3YP":
-                            calorias = 220 * porcion;
+                            calorias = 54 * porcion;
                             break;
 
                         case "4NP":
@@ -407,19 +407,19 @@ public class AlimentacionFragment extends Fragment {
                     switch (id) {
 
                         case "0AG":
-                            calorias = 220 * porcion;
+                            calorias = 130 * porcion;
                             break;
 
                         case "1EG":
-                            calorias = 220 * porcion;
+                            calorias = 48 * porcion;
                             break;
 
                         case "2PG":
-                            calorias = 220 * porcion;
+                            calorias = 312 * porcion;
                             break;
 
                         case "3PG":
-                            calorias = 220 * porcion;
+                            calorias = 88 * porcion;
                             break;
 
                         case "4NG":
@@ -447,35 +447,35 @@ public class AlimentacionFragment extends Fragment {
                     switch (id) {
 
                         case "0CB":
-                            calorias = 220 * porcion;
+                            calorias = 66 * porcion;
                             break;
 
                         case "1CB":
-                            calorias = 220 * porcion;
+                            calorias = 160 * porcion;
                             break;
 
                         case "2JB":
-                            calorias = 220 * porcion;
+                            calorias = 120 * porcion;
                             break;
 
                         case "3TB":
-                            calorias = 220 * porcion;
+                            calorias = 40 * porcion;
                             break;
 
                         case "0AB":
-                            calorias = 220 * porcion;
+                            calorias = 0 * porcion;
                             break;
 
                         case "1AB":
-                            calorias = 220 * porcion;
+                            calorias = 20 * porcion;
                             break;
 
                         case "2CB":
-                            calorias = 220 * porcion;
+                            calorias = 85 * porcion;
                             break;
 
                         case "3GB":
-                            calorias = 220 * porcion;
+                            calorias = 65 * porcion;
                             break;
 
                         case "4NB":

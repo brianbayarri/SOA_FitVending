@@ -109,7 +109,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/calorias_1"
+                            android:text="Valor energetico: 120 cal"
                             android:textSize="15sp"
                             android:layout_below="@id/img_Chocoarroz"
                             android:layout_centerHorizontal="true"
@@ -182,7 +182,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/calorias_2"
+                            android:text="Valor energetico: 93 cal"
                             android:textSize="15sp"
                             android:layout_below="@id/img_Cereal"
                             android:layout_centerHorizontal="true"
@@ -265,7 +265,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/calorias_3"
+                            android:text="Valor energetico: 159 cal"
                             android:textSize="15sp"
                             android:layout_below="@id/img_Frutos"
                             android:layout_centerHorizontal="true"
@@ -337,7 +337,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/calorias_4"
+                            android:text="valor energitico: 186 cal"
                             android:textSize="15sp"
                             android:layout_below="@id/img_Alfajor"
                             android:layout_centerHorizontal="true"
@@ -391,7 +391,7 @@
         android:layout_marginLeft="10dp"
         android:gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Calorias consumidas en el día"
+        android:text="Calorias que puedes consumir"
         android:textStyle="bold"
         android:textSize="16sp"
         android:textColor="#FFFFFF" />
@@ -401,7 +401,7 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:text="0.0"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="60dp"
         android:gravity="center"
         android:layout_marginStart="250dp"
         android:layout_marginTop="10dp"

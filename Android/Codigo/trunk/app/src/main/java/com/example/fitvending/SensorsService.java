@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 public class SensorsService extends Service implements SensorEventListener {
@@ -47,6 +49,7 @@ public class SensorsService extends Service implements SensorEventListener {
 
         modificaciones = 0;
 
+        String primera_hora = getCurrentDate();
 
     }
 
@@ -83,7 +86,7 @@ public class SensorsService extends Service implements SensorEventListener {
         if(event.sensor.getType() == Sensor.TYPE_STEP_COUNTER) {
             float pasos = event.values[0];
             String pasostext = String.valueOf(pasos);
-            Toast.makeText(this, pasostext, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, pasostext, Toast.LENGTH_LONG).show();
         }
         else if(event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
 
@@ -118,5 +121,11 @@ public class SensorsService extends Service implements SensorEventListener {
 
     }
 
+    public String getCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("hh:mm:ss:Z");
+        String strDate = mdformat.format(calendar.getTime());
+        return strDate;
+    }
 
 }

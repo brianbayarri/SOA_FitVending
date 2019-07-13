@@ -135,7 +135,7 @@ public class BtConnectionService extends Service {
         if(btSocket.isConnected())
         enviarDatosAArduino("0");
         else
-           Stock = "1-0-1-1";
+           Stock = "1-1-1-1";
 
 
     }

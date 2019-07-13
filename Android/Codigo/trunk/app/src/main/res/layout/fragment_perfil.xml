@@ -20,7 +20,7 @@
             android:id="@+id/img_Userphoto"
             android:layout_width="87dp"
             android:layout_height="92dp"
-            android:src="@drawable/perfil"
+            android:src="@drawable/pablo"
             android:layout_marginTop="18dp"
             android:layout_centerHorizontal="true"
             android:scaleType = "centerCrop" />
@@ -161,23 +161,13 @@
             android:layout_marginTop="475dp"
             android:gravity="center" />
 
-        <TextView
-            android:id="@+id/lbl_Logros"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="520dp"
-            android:background="#6DBE11"
-            android:gravity="center"
-            android:text="Logros obtenidos: "
-            android:textColor="#FFFFFF" />
 
         <TextView
             android:id="@+id/lbl_Monedas"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="560dp"
+            android:layout_marginTop="530dp"
             android:background="#6DBE11"
             android:gravity="center"
             android:text="Monedas: "
@@ -189,7 +179,7 @@
             android:layout_width="56dp"
             android:layout_height="25dp"
             android:layout_marginStart="170dp"
-            android:layout_marginTop="560dp"
+            android:layout_marginTop="530dp"
             android:gravity="center"
             android:text="0" />
 

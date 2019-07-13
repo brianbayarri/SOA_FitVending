@@ -24,13 +24,14 @@ public class UsuarioDAO {
     private static final String MONEDAS = "monedas";
     private static final String EJERCICIO = "ejercicio";
     private static final String CALORIAS = "calorias";
+    private static final String CALORIAS_MAX = "calorias_max";
     private static final String FECHAHORA = "fechahora";
 
     public static final String CREATE_USUARIO_TABLE = "CREATE TABLE " + TABLE_NAME +
             " (" + NOMBRE +
             " TEXT PRIMARY KEY, " + PASSWORD + " TEXT, " + ALTURA + " DOUBLE, " + EDAD + " INTEGER, " +
             PESO + " DOUBLE, " + SEXO + " TEXT, " + MONEDAS +
-            " INTEGER, " + EJERCICIO + " INTEGER, " + CALORIAS + " DOUBLE, " + FECHAHORA + " STRING )";
+            " INTEGER, " + EJERCICIO + " INTEGER, " + CALORIAS + " DOUBLE, " + CALORIAS_MAX + " DOUBLE, " + FECHAHORA + " STRING )";
 
     public static final String DELETE_USUARIO_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
@@ -48,6 +49,7 @@ public class UsuarioDAO {
         values.put(MONEDAS, 0);
         values.put(EJERCICIO, 0);
         values.put(CALORIAS, 0);
+        values.put(CALORIAS_MAX, 0);
         values.put(FECHAHORA, getCurrentDate());
 
         id = database.insert(TABLE_NAME, null, values);
@@ -122,6 +124,7 @@ public class UsuarioDAO {
                 user.setSexo(cursor.getString(cursor.getColumnIndex(SEXO)));
                 user.setMoneda(cursor.getInt(cursor.getColumnIndex(MONEDAS)));
                 user.setCalorias(cursor.getDouble(cursor.getColumnIndex(CALORIAS)));
+                user.setCalorias_max(cursor.getDouble(cursor.getColumnIndex(CALORIAS_MAX)));
                 user.setEjercicio(cursor.getInt(cursor.getColumnIndex(EJERCICIO)));
             }
             objDatabase.close();
@@ -143,6 +146,7 @@ public class UsuarioDAO {
             newValues.put(SEXO, user.getSexo());
             newValues.put(EJERCICIO, user.getEjercicio());
             newValues.put(CALORIAS, user.getCalorias());
+            newValues.put(CALORIAS_MAX, user.getCalorias_max());
 
 
             int error = database.update(TABLE_NAME, newValues, NOMBRE + "='" + user.getNombreUsuario() + "'", null);

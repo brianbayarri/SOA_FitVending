@@ -133,7 +133,7 @@ public class PerfilFragment extends Fragment {
             sp_sexo.setSelection(obtenerPosicionItem(sp_sexo, infoUser.getSexo()));
             sp_ejercicio.setSelection(infoUser.getEjercicio());
             cal_num.setText(String.valueOf(new DecimalFormat("#.##").format(infoUser.getCalorias())));
-            calcularCal(infoUser.getCalorias());
+            calcularCal(infoUser.getCalorias(), infoUser);
             lbl_monedas.setText(String.valueOf(infoUser.getMoneda()));
 
             if(infoUser.getEdad()==0) { ///cuando el usuario todavia no completo su perfil, que todos los textview aparezcan vacios
@@ -162,7 +162,7 @@ public class PerfilFragment extends Fragment {
 
                     String [] parseString = cal_num.getText().toString().split("/");
                     double cal = Double.parseDouble(parseString[0]);
-                    calcularCal(cal);
+                    calcularCal(cal,infoUser);
 
                     userDao.actualizarUsuario(db, infoUser);
 
@@ -178,7 +178,7 @@ public class PerfilFragment extends Fragment {
         return vista;
     }
 
-    private void calcularCal(double calorias_db) {
+    private void calcularCal(double calorias_db, Usuario infoUser) {
 
         double cal_diarias=0.0, ej=0.0;
         double altura_f=0.0, peso_f=0.0;
@@ -226,6 +226,7 @@ public class PerfilFragment extends Fragment {
                 cal_diarias=(655 + (9.6* peso_f) + (1.8 * altura_f) - (4.7 * edad_f))*ej; }
 
         }
+        infoUser.setCalorias_max(cal_diarias);
         cal_num.setText(calorias_db + "/"+String.valueOf(cal_diarias));
     }
 

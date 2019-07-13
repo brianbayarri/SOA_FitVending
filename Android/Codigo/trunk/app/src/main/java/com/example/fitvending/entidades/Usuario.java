@@ -12,6 +12,7 @@ public class Usuario {
     private String sexo;
     private int ejercicio;
     private double calorias;
+    private double calorias_max;
     private Date date;
 
     public void setDate(Date date) {
@@ -95,4 +96,11 @@ public class Usuario {
         this.peso = peso;
     }
 
+    public double getCalorias_max() {
+        return calorias_max;
+    }
+
+    public void setCalorias_max(double calorias_max) {
+        this.calorias_max = calorias_max;
+    }
 }
