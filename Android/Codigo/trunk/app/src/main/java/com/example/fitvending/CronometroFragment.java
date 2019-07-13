@@ -43,6 +43,10 @@ public class CronometroFragment extends Fragment {
     ImageButton btn_caminar, btn_correr, btn_bicicleta, btn_nadar;
     Chronometer cronometro;
     Boolean empezar = false;
+	double caloriasCaminar = 0.063;
+	double caloriasCorrer = 0.151;
+	double caloriasNadar = 0.173;
+	double caloriasBicicleta = 0.120;
     String modo = "non";
     TextView calorias;
     long detenerse;
@@ -220,16 +224,16 @@ public class CronometroFragment extends Fragment {
         switch(modo)
         {
             case "caminar":
-                calQuemadas = ((minutos + segundos) * 0.063)/1.00;
+                calQuemadas = ((minutos + segundos) * caloriasCaminar)/1.00;
                 break;
             case "correr":
-                calQuemadas = ((minutos + segundos) * 0.151)/1.00;
+                calQuemadas = ((minutos + segundos) * caloriasCorrer)/1.00;
                 break;
             case "bicicleta":
-                calQuemadas = ((minutos + segundos) * 0.120)/1.00;
+                calQuemadas = ((minutos + segundos) * caloriasBicicleta)/1.00;
                 break;
             case "nadar":
-                calQuemadas = ((minutos + segundos) * 0.173)/1.00;
+                calQuemadas = ((minutos + segundos) * caloriasNadar)/1.00;
                 break;
             case "non":
                 noEleccion = true;
